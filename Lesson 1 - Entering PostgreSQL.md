@@ -72,3 +72,49 @@ PostgreSQL Server
                     ├── Row
                     └── Column
 ```
+
+
+#### PostgreSQL Mimarisi (High-level)
+
+- PostgreSQL bir client-server sistemidir. Yani iki taraf var:
+
+### Client
+
+- PostgreSQL sorgu atarken, istek atarken kullandığımız araç. (DBeaver, pgadmin, python vs.)
+
+
+#### Server (PostgreSQL Server)
+
+- Asıl işi yapan kısım. Veritabanını yönetir, gelen istekleri karşılar ve SQL çalıştırır.
+
+### Backend Process Nedir?
+
+- Her bağlantı için ayrı bir backend process oluşur. Client (Örneğin psql) bağlanır. Her bağlantı için ayrı bir Backend process oluşur (100 kullanıcı 100 process). Bu nedenle max-connections ayarı önemlidir.
+
+- Connectionlar nasıl sorgulanır?
+
+```sql
+SELECT pid, usename, datname, state
+FROM pg_stat_activity;
+```
+
+### psql Nedir?
+
+- Varsayılan komut satırı işlemcisi.
+
+```bash
+psql -h localhost -p 5432 -U postgres -d postgres
+```
+
+#### Basit psql Komutları
+
+- \l -- veritabanlarını listele.
+
+- \dt -- Tabloları göster.
+
+- \dn -- shemaları göster.
+
+- \c database_name -- veritabanına bağlan
+
+- \d users -- bir tabloyu incele
+
